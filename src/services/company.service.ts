@@ -11,6 +11,15 @@ const createCompany = async (name: string): Promise<Company> => {
   });
 };
 
+const getCompanyByName = async (name: string): Promise<Company | null> => {
+  return prisma.company.findFirst({
+    where: {
+      name,
+    },
+  });
+};
+
 export default {
   createCompany,
+  getCompanyByName,
 };
