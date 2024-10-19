@@ -3,10 +3,14 @@ import Feedback from "../services/feedback.service";
 
 const createFeedback = async (req: Request, res: Response) => {
   try {
-    const { name } = req.body;
-    const company = await Feedback.createFeedback(name);
+    const { type, comment, screenshotUrl } = req.body;
+    const feedback = await Feedback.createFeedback(
+      type,
+      comment,
+      screenshotUrl
+    );
 
-    res.status(201).json({ company });
+    res.status(201).json({ feedback });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
     console.log(error);
