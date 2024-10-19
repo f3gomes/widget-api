@@ -1,6 +1,6 @@
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
-import { connectToDB } from "./config/database";
+import { main } from "./config/db";
 
 export const app: Application = express();
 const PORT = process.env.PORT || 9000;
@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 9000;
 app.use(cors());
 app.use(express.json());
 
-connectToDB();
+main();
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({
