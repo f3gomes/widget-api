@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import Feedback from "../services/feedback.service";
+import feedbackService from "../services/feedback.service";
 
-const createFeedback = async (req: Request, res: Response) => {
+const createFeedback = async (req: Request, res: Response): Promise<any> => {
   try {
     const { type, comment, screenshotUrl } = req.body;
 
@@ -12,7 +12,7 @@ const createFeedback = async (req: Request, res: Response) => {
       });
     }
 
-    const feedback = await Feedback.createFeedback(
+    const feedback = await feedbackService.createFeedback(
       type,
       comment,
       screenshotUrl
