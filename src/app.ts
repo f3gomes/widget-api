@@ -20,4 +20,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.use("/v1", feedbackRouter);
+app.use("/api", feedbackRouter);

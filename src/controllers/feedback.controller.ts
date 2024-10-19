@@ -4,13 +4,21 @@ import Feedback from "../services/feedback.service";
 const createFeedback = async (req: Request, res: Response) => {
   try {
     const { type, comment, screenshotUrl } = req.body;
+
+    if (!type || !comment || !screenshotUrl) {
+      return res.status(422).json({
+        message:
+          "The 'type', 'comment' and 'screenshotUrl' parameters are mandatory",
+      });
+    }
+
     const feedback = await Feedback.createFeedback(
       type,
       comment,
       screenshotUrl
     );
 
-    res.status(201).json({ feedback });
+    return res.status(201).json({ feedback });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
     console.log(error);
