@@ -25,6 +25,18 @@ const createFeedback = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+const getFeedbackList = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const feedbackList = await feedbackService.getFeedbackList();
+
+    return res.status(201).json({ feedbackList });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+    console.log(error);
+  }
+};
+
 export default {
   createFeedback,
+  getFeedbackList,
 };

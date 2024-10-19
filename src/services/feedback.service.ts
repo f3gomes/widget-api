@@ -17,6 +17,11 @@ const createFeedback = async (
   });
 };
 
+const getFeedbackList = async (): Promise<Feedback[]> => {
+  return prisma.feedback.findMany({});
+};
+
 export default {
   createFeedback,
+  getFeedbackList,
 };
