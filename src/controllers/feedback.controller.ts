@@ -5,10 +5,9 @@ const createFeedback = async (req: Request, res: Response): Promise<any> => {
   try {
     const { type, comment, screenshotUrl } = req.body;
 
-    if (!type || !comment || !screenshotUrl) {
+    if (!type || !comment) {
       return res.status(422).json({
-        message:
-          "The 'type', 'comment' and 'screenshotUrl' parameters are mandatory",
+        message: "The 'type', 'comment' and parameters are mandatory",
       });
     }
 
