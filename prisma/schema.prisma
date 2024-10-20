@@ -16,5 +16,5 @@ model Feedback {
   id              String @id @default(uuid())
   type            String
   comment         String
-  screenshotUrl   String
+  screenshotUrl   String?
 }
