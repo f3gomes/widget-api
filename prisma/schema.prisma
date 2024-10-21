@@ -12,10 +12,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Company {
+  id              String @id @default(uuid())
+  name            String
+  feedbacks       Feedback[]
+
+  createdAt       DateTime @default(now())
+}
+
 model Feedback {
   id              String @id @default(uuid())
   type            String
   comment         String
   screenshotUrl   String?
+  company         Company @relation(fields: [companyId], references: [id])
+  companyId       String
+
   createdAt       DateTime @default(now())
 }
