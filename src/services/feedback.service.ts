@@ -1,10 +1,10 @@
-import { Feedback } from "@prisma/client";
+import { Feedback, FeedbackType } from "@prisma/client";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const createFeedback = async (
-  type: string,
+  type: FeedbackType,
   comment: string,
   companyId: number,
   screenshotUrl: string

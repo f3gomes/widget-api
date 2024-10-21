@@ -22,13 +22,19 @@ model Company {
 }
 
 model Feedback {
-  id              String @id @default(uuid())
-  type            String
+  id              Int       @id @default(autoincrement())
+  type            FeedbackType
   comment         String
   screenshotUrl   String?
-  createdAt       DateTime @default(now())
+  createdAt       DateTime  @default(now())
 
-  company         Company @relation(fields: [companyId], references: [id])
+  company         Company   @relation(fields: [companyId], references: [id])
   companyId       Int
 
+}
+
+enum FeedbackType {
+  BUG
+  IDEA
+  OTHER
 }
