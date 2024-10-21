@@ -15,7 +15,7 @@ const createCompany = async (req: Request, res: Response): Promise<any> => {
 
     return res.status(201).json({ company });
   } catch (error: any) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message.split("\n") });
     console.log(error);
   }
 };
