@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Company {
-  id              String @id @default(uuid())
+  id              Int    @id @default(autoincrement())
   name            String
   feedbacks       Feedback[]
 
@@ -27,7 +27,7 @@ model Feedback {
   comment         String
   screenshotUrl   String?
   company         Company @relation(fields: [companyId], references: [id])
-  companyId       String
+  companyId       Int
 
   createdAt       DateTime @default(now())
 }
