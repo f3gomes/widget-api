@@ -14,11 +14,11 @@ datasource db {
 }
 
 model Company {
-  id              Int    @id @default(autoincrement())
-  name            String
-  feedbacks       Feedback[]
+  id              Int         @id @default(autoincrement())
+  name            String      @unique
+  createdAt       DateTime    @default(now())
 
-  createdAt       DateTime @default(now())
+  feedbacks       Feedback[]
 }
 
 model Feedback {
@@ -26,8 +26,9 @@ model Feedback {
   type            String
   comment         String
   screenshotUrl   String?
+  createdAt       DateTime @default(now())
+
   company         Company @relation(fields: [companyId], references: [id])
   companyId       Int
 
-  createdAt       DateTime @default(now())
 }

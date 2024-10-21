@@ -1,6 +1,7 @@
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import { feedbackRouter } from "./routes/v1/feedback.route";
+import { companyRouter } from "./routes/company.route";
 
 export const app: Application = express();
 const PORT = process.env.PORT || 9000;
@@ -19,3 +20,4 @@ app.listen(PORT, () => {
 });
 
 app.use("/api", feedbackRouter);
+app.use("/api", companyRouter);

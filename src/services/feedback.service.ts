@@ -6,10 +6,18 @@ const prisma = new PrismaClient();
 const createFeedback = async (
   type: string,
   comment: string,
+  companyId: number,
   screenshotUrl: string
-): Promise<Feedback> => {
+): Promise<Feedback | { error: string }> => {
+  const company = prisma.company.findUnique({ where: { id: companyId } });
+
+  if (!company) {
+    return { error: "Company not found" };
+  }
+
   return prisma.feedback.create({
     data: {
+      companyId,
       type,
       comment,
       screenshotUrl,
