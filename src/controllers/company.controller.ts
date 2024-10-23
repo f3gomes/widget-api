@@ -7,15 +7,22 @@ const createCompany = async (
   res: Response
 ): Promise<Company | any> => {
   try {
-    const { name } = req.body;
+    const { name, cnpj, address, phone, email } = req.body;
 
-    if (!name) {
+    if (!name || !cnpj || !address || !phone || !email) {
       return res.status(422).json({
-        message: "The 'name' parameter are mandatory",
+        message:
+          "The 'name', 'cnpj', 'address', 'phone', 'email' parameters are mandatory",
       });
     }
 
-    const company = await companyService.createCompany(name);
+    const company = await companyService.createCompany(
+      name,
+      cnpj,
+      address,
+      phone,
+      email
+    );
 
     return res.status(201).json({ company });
   } catch (error: any) {
