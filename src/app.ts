@@ -3,7 +3,7 @@ import express, { Application, Request, Response } from "express";
 import { feedbackRouter } from "./routes/feedback.route";
 import { companyRouter } from "./routes/company.route";
 
-export const app: Application = express();
+const app: Application = express();
 const PORT = process.env.PORT || 9000;
 
 app.use(cors());
@@ -21,3 +21,5 @@ app.listen(PORT, () => {
 
 app.use("/api", feedbackRouter);
 app.use("/api", companyRouter);
+
+export default app;
