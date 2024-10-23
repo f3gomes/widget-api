@@ -1,8 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// DATABASE_URL="postgresql://postgres:WPILMrCfl88btwT@localhost:5432/widget_db?schema=public"
 
 generator client {
   provider = "prisma-client-js"
@@ -14,11 +10,17 @@ datasource db {
 }
 
 model Company {
-  id              Int         @id @default(autoincrement())
+  id              String      @id @default(uuid())
   name            String      @unique
+  cnpj            String?      @unique
+  address         String?
+  phone           String?
+  email           String?
   createdAt       DateTime    @default(now())
 
   feedbacks       Feedback[]
+
+  @@map("companies")
 }
 
 model Feedback {
@@ -29,8 +31,9 @@ model Feedback {
   createdAt       DateTime  @default(now())
 
   company         Company   @relation(fields: [companyId], references: [id])
-  companyId       Int
+  companyId       String
 
+  @@map("feedbacks")
 }
 
 enum FeedbackType {

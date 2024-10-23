@@ -11,11 +11,6 @@ const createCompany = async (name: string): Promise<Company> => {
   });
 };
 
-const getCompanyList = async (): Promise<Company[]> => {
-  return prisma.company.findMany({});
-};
-
 export default {
   createCompany,
-  getCompanyList,
 };

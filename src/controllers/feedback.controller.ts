@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import feedbackService from "../services/feedback.service";
+import { Feedback } from "@prisma/client";
 
-const createFeedback = async (req: Request, res: Response): Promise<any> => {
+const createFeedback = async (
+  req: Request,
+  res: Response
+): Promise<Feedback | any> => {
   try {
     const { type, comment, companyId, screenshotUrl } = req.body;
 
@@ -26,11 +30,18 @@ const createFeedback = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const getFeedbackList = async (_req: Request, res: Response): Promise<any> => {
-  try {
-    const feedbackList = await feedbackService.getFeedbackList();
+const getFeedbackListByCompanyId = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  const { companyId } = req.params;
 
-    return res.status(201).json({ feedbackList });
+  try {
+    const feedbackList = await feedbackService.getFeedbackListByCompanyId(
+      companyId
+    );
+
+    return res.status(200).json({ feedbackList });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
     console.log(error);
@@ -39,5 +50,5 @@ const getFeedbackList = async (_req: Request, res: Response): Promise<any> => {
 
 export default {
   createFeedback,
-  getFeedbackList,
+  getFeedbackListByCompanyId,
 };

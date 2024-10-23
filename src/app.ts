@@ -1,6 +1,6 @@
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
-import { feedbackRouter } from "./routes/v1/feedback.route";
+import { feedbackRouter } from "./routes/feedback.route";
 import { companyRouter } from "./routes/company.route";
 
 export const app: Application = express();

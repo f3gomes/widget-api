@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import companyService from "../services/company.service";
+import { Company } from "@prisma/client";
 
-const createCompany = async (req: Request, res: Response): Promise<any> => {
+const createCompany = async (
+  req: Request,
+  res: Response
+): Promise<Company | any> => {
   try {
     const { name } = req.body;
 
@@ -20,18 +24,6 @@ const createCompany = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
-const getCompanyList = async (req: Request, res: Response): Promise<any> => {
-  try {
-    const companyList = await companyService.getCompanyList();
-
-    return res.status(201).json({ companyList });
-  } catch (error: any) {
-    res.status(500).json({ error: error.message });
-    console.log(error);
-  }
-};
-
 export default {
   createCompany,
-  getCompanyList,
 };
