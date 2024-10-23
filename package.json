@@ -2,10 +2,11 @@
   "name": "widget-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
     "build": "tsc",
     "start": "ts-node-dev src/app.ts",
+    "dev": "npx prisma migrate dev && ts-node-dev src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
