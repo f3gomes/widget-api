@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npx prisma migrate deploy",
     "start": "ts-node-dev src/app.ts",
     "dev": "npx prisma migrate dev && ts-node-dev src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
