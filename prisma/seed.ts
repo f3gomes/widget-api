@@ -59,12 +59,18 @@ async function main() {
     where: { name: "Conecta RH" },
   });
 
+  const comment = "Erro encontrado ao acessar o sistema, número";
+
+  const screenshotUrl =
+    "https://ik.imagekit.io/gm9tjsb8yu/screenshot_IaBtQV27V.jpg";
+
   for (let i = 1; i <= 25; i++) {
     await prisma.feedback.create({
       data: {
         type: "BUG",
-        comment: `Erro encontrado ao acessar o sistema, número ${i}`,
+        comment: `${comment} ${i}`,
         companyId: company1!.id,
+        screenshotUrl,
       },
     });
   }
@@ -73,8 +79,9 @@ async function main() {
     await prisma.feedback.create({
       data: {
         type: "IDEA",
-        comment: `Sugestão indicada ao acessar o sistema, número ${i}`,
+        comment: `${comment} ${i}`,
         companyId: company2!.id,
+        screenshotUrl,
       },
     });
   }
@@ -83,8 +90,9 @@ async function main() {
     await prisma.feedback.create({
       data: {
         type: "OTHER",
-        comment: `Possível melhoria ao acessar o sistema, número ${i}`,
+        comment: `${comment} ${i}`,
         companyId: company3!.id,
+        screenshotUrl,
       },
     });
   }
@@ -93,8 +101,9 @@ async function main() {
     await prisma.feedback.create({
       data: {
         type: "BUG",
-        comment: `Erro encontrado ao acessar o sistema, número ${i}`,
+        comment: `${comment} ${i}`,
         companyId: company4!.id,
+        screenshotUrl,
       },
     });
   }

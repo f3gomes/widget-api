@@ -36,7 +36,9 @@ const getFeedbackListByCompanyId = async (
     },
   });
 
-  const feedbackList = { company, feedbacks };
+  const total = feedbacks.length;
+
+  const feedbackList = { company, total, feedbacks };
 
   return feedbackList;
 };
