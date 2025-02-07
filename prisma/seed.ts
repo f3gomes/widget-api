@@ -3,6 +3,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.feedback.deleteMany();
+  await prisma.company.deleteMany();
+
   await prisma.company.create({
     data: {
       name: "Sabores do Campo",
