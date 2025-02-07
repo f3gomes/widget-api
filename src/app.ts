@@ -1,5 +1,5 @@
 import cors from "cors";
-import express, { Application, Request, Response } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import { feedbackRouter } from "./routes/feedback.route";
 import { companyRouter } from "./routes/company.route";
 import swaggerUi from "swagger-ui-express";
@@ -28,14 +28,13 @@ app.use("/api", companyRouter);
 app.use(
   "/docs",
   swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec, {
-    customCssUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
-    customJs: [
-      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js",
-    ],
-  })
+  async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      res.send(swaggerUi.generateHTML(swaggerSpec));
+    } catch (err) {
+      next(err);
+    }
+  }
 );
 
 export default app;
