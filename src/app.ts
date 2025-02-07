@@ -2,6 +2,8 @@ import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import { feedbackRouter } from "./routes/feedback.route";
 import { companyRouter } from "./routes/company.route";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger";
 import path from "path";
 
 const app: Application = express();
@@ -16,15 +18,13 @@ app.get("/", (_req: Request, res: Response) => {
   });
 });
 
-app.get("/docs", (_req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "./docs/index.html"));
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
 app.use("/api", feedbackRouter);
 app.use("/api", companyRouter);
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 export default app;
