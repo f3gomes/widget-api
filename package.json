@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nestjs/swagger": "^11.0.3",
     "@prisma/client": "^5.21.1",
     "@types/pg": "^8.11.10",
     "cors": "^2.8.5",

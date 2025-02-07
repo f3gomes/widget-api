@@ -10,10 +10,6 @@
     {
       "src": "(.*)",
       "dest": "src/app.ts"
-    },
-    {
-      "src": "/docs/(.*)",
-      "dest": "/docs"
     }
   ]
 }

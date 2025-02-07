@@ -8,9 +8,9 @@ export const feedbackRouter = express.Router();
  * /api/feedback/new:
  *   post:
  *     summary: Cadastrar Feedback
+ *     description: Cadastra um novo feedback no banco de dados.
  *     tags:
  *       - feedback
- *     description: Cadastra um novo feedback no banco de dados.
  *     requestBody:
  *       required: true
  *       content:
